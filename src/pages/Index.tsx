@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
+import TechnologySection from "@/components/TechnologySection";
+import FacilitiesSection from "@/components/FacilitiesSection";
+import StatsSection from "@/components/StatsSection";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
+import ContactModal from "@/components/ContactModal";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const openContactModal = () => setIsContactModalOpen(true);
+  const closeContactModal = () => setIsContactModalOpen(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navbar onOpenContact={openContactModal} />
+      <HeroSection onOpenContact={openContactModal} />
+      <ServicesSection onOpenContact={openContactModal} />
+      <TechnologySection />
+      <FacilitiesSection />
+      <StatsSection />
+      <CTASection onOpenContact={openContactModal} />
+      <Footer />
+      <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
+      <WhatsAppButton />
     </div>
   );
 };
